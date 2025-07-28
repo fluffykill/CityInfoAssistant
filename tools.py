@@ -4,6 +4,75 @@ import requests
 OPEN_WEATHER_API_KEY = os.getenv("OPEN_WEATHER_API_KEY")
 RAPID_API_KEY = os.getenv("RAPID_API_KEY")
 
+TOOLS_DEFINITION = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_city_local_time",
+            "description": "Gets the current local time for provided area and location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "area": {"type": "string","description": "The area usually a continent e.g. America or Europe"},
+                    "location": {"type": "string", "description": "The location usually a city e.g. Toronto"},
+                },
+                "required": ["area", "location"],
+                "additionalProperties": False,
+            },
+            "strict": True,
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_city_weather",
+            "description": "Get current temperature in celsius for provided coordinates.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "latitude": {"type": "number"},
+                    "longitude": {"type": "number"},
+                },
+                "required": ["latitude", "longitude"],
+                "additionalProperties": False,
+            },
+            "strict": True,
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "find_city",
+            "description": "Finds the city wikiDataId for cities with a minimum population of 1000000 given the prefix of it's name",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                },
+                "required": ["name"],
+                "additionalProperties": False,
+            },
+            "strict": True,
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "find_city_details",
+            "description": "Get basic city facts (e.g., country, population, description) from a wikiDataId",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "wikiDataId": {"type": "string", "details": "The wikiDataId returned from the find_city tool"},
+                },
+                "required": ["wikiDataId"],
+                "additionalProperties": False,
+            },
+            "strict": True,
+        },
+    }
+]
+
 def get_current_city_weather(latitude, longitude):
   url = f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={OPEN_WEATHER_API_KEY}"
   response = requests.get(url)
@@ -70,5 +139,4 @@ TOOL_MAPPING = {
   "find_city": find_city,
   "get_city_local_time": get_city_local_time,
   "find_city_details": find_city_details
-
 }
