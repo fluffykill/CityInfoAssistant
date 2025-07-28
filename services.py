@@ -13,11 +13,11 @@ SYSTEM_PROMPT = "You are a city information assistant that helps users gather fa
 
 async def city_information_agent(req):
   try:
-    messages = [
-      {"role": "system", "content": SYSTEM_PROMPT}
-    ]
+    messages = []
     if req.messages:
-        messages+=req.messages
+        messages=req.messages
+    else:
+       messages.append({"role": "system", "content": SYSTEM_PROMPT})
     messages.append({"role": "user", "content": req.new_message})
     function_call_list = []
     response = {
