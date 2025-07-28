@@ -68,17 +68,19 @@ Due to time limited nature of this project, I do not believe this project is pro
 
 ## Future Plans
 For an initial alpha production version of the product provided there is already a working cloud environment
-1. Add logging to better track current status and errors
-2. Find a proper reasoning llm and update code to suport it
-3. Evaluate llm usage and response quality. Add caps to llm calls or swap to a different llm if needed
-4. Decide on a db service to use for chat history and potential user and other kinds of data as well as implementing the actual code to handle db
-5. Update to save chat history in the chosen db so users do not have to provide entire chat history in request
-6. Add auth for different users
-7. Add security checks to prevent cross origin resource sharing
-8. Decide on wether to use containerization or not, if yes then implement containerization
-9. Add proper openapi documentation 
-10. Update readme for production version
-11. Create test suite
+1. Organize project file structure for a proper backend service
+2. Setup proper git settings and branches for CI/CD
+3. Add logging to better track current status and errors
+4. Find a proper reasoning llm and update code to suport it
+5. Evaluate llm usage and response quality. Add caps to llm calls or swap to a different llm if needed
+6. Decide on a db service to use for chat history and potential user and other kinds of data as well as implementing the actual code to handle db
+7. Update to save chat history in the chosen db so users do not have to provide entire chat history in request
+8. Add auth for different users
+9. Add security checks to prevent cross origin resource sharing
+10. Decide on wether to use containerization or not, if yes then implement containerization
+11. Add proper openapi documentation 
+12. Update readme for production version
+13. Create test suite
 
 Future features.
 1. Add feature for agent to provide ideas on places to visit for the particular city i.e local attractions or points of interest
