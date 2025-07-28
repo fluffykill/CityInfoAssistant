@@ -13,4 +13,4 @@ google-genai = "~=1.27.0"
 [dev-packages]
 
 [requires]
-python_version = "3.13"
+python_version = "~=3.13"

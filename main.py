@@ -3,12 +3,13 @@ import os
 import json
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from services import city_information_agent
 
+# TODO: Add logging
 load_dotenv()
 app = FastAPI()
 
@@ -22,7 +23,4 @@ def pots_message(req: Message):
     try:
       return StreamingResponse(city_information_agent(req))
     except Exception as error:
-       return {
-          "id": req.id,
-          "error": error
-       }
+       raise HTTPException(status_code=500, detail="Something went wrong")
